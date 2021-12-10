@@ -52,6 +52,19 @@ namespace DevBuildMovieCRUDFunctionality.Models
             }
         }
 
+        public void UpdateMovie(Movie model)
+        {
+            using (var connect = new MySqlConnection(Secret.Connection))
+            {
+                var sql = $"UPDATE movies " +
+                    $"set title = '{model.Title}', genre = '{model.Genre}', year = {model.Year}, runtime = {model.RunTime} " +
+                    $"WHERE id = {model.ID}";
+                connect.Open();
+                connect.Query<Movie>(sql);
+                connect.Close();
+            }
+        }
+
 
         public void DeleteMovie(Movie model)
         {

@@ -1,0 +1,23 @@
+﻿@model List<Movie>
+
+<h1>Test</h1>
+@foreach (Movie m in Model)
+{
+    <div class="catalog-container">
+        <h5>@m.Title</h5>
+        <h7>Genre:</h7>
+        <p>@m.Genre</p>
+
+        <h7>Year:</h7>
+        <p>@m.Year</p>
+
+        <h7>Run time:</h7>
+        <p>@m.RunTime</p>
+
+        <p>
+            <a asp-controller="Movie" asp-action="Details" asp-route-id="@m.ID">Details</a> |
+            <a asp-controller="Movie" asp-action="Edit" asp-route-id="@m.ID">Edit</a> |
+            <a asp-controller="Movie" asp-action="Delete" asp-route-id="@m.ID">Delete</a>
+        </p>
+    </div>
+}

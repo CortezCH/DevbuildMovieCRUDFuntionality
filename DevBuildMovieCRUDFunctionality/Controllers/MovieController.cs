@@ -42,10 +42,28 @@ namespace DevBuildMovieCRUDFunctionality.Controllers
         {
             return View(MovieDAL.GetMovie(id));
         }
+
         public IActionResult Edit(int id)
         {
             return View(MovieDAL.GetMovie(id));
         }
+
+        [HttpPost]
+        public IActionResult Edit(Movie model)
+        {
+            if (ModelState.IsValid)
+            {
+                MovieDAL.UpdateMovie(model);
+                return RedirectToAction("EditResult", "Movie", model);
+            }
+            return View(MovieDAL.GetMovie(model.ID));
+        }
+
+        public IActionResult EditResult(Movie model)
+        {
+            return View(MovieDAL.GetMovie(model.ID));
+        }
+
         public IActionResult Delete(int id)
         {
 
