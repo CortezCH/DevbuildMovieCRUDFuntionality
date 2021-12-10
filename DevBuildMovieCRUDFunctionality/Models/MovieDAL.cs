@@ -16,11 +16,11 @@ namespace DevBuildMovieCRUDFunctionality.Models
             using(var connect = new MySqlConnection(Secret.Connection))
             {
                 var sql = $"insert into movies values" +
-                $"({model.ID}," +
-                $" {model.Title}," +
-                $" {model.Genre}," +
-                $" {model.Year}," +
-                $" {model.RunTime})";
+                $"( {model.ID}," +
+                $" '{model.Title}'," +
+                $" '{model.Genre}'," +
+                $"  {model.Year}," +
+                $"  {model.RunTime})";
                 connect.Open();
                 connect.Query<Movie>(sql);
                 connect.Close();
@@ -60,8 +60,8 @@ namespace DevBuildMovieCRUDFunctionality.Models
                 var sql = $"delete from movies " +
                     $"WHERE " +
                 $" id = {model.ID} AND" +
-                $" title = {model.Title} AND" +
-                $" genre = {model.Genre} AND" +
+                $" title = '{model.Title}' AND" +
+                $" genre = '{model.Genre}' AND" +
                 $" `year` = {model.Year} AND" +
                 $" runtime = {model.RunTime}";
                 connect.Open();
@@ -77,7 +77,7 @@ namespace DevBuildMovieCRUDFunctionality.Models
             {
                 var sql = $"delete from movies " +
                     $"WHERE " +
-                $" id = {id},";
+                $" id = {id}";
                 connect.Open();
                 connect.Query<Movie>(sql);
                 connect.Close();
